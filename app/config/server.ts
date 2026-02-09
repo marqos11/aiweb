@@ -2,8 +2,6 @@ import md5 from "spark-md5";
 import { DEFAULT_MODELS, DEFAULT_GA_ID } from "../constant";
 import { isGPT4Model } from "../utils/model";
 
-// ... (keep ProcessEnv declaration as it is in the source)
-
 const ACCESS_CODES = (function getAccessCodes(): Set<string> {
   const code = process.env.CODE;
   try {
@@ -41,6 +39,7 @@ export const getServerSideConfig = () => {
     isAnthropic: !!process.env.ANTHROPIC_API_KEY,
     anthropicApiKey: getApiKey(process.env.ANTHROPIC_API_KEY),
     anthropicUrl: process.env.ANTHROPIC_URL,
+    anthropicApiVersion: process.env.ANTHROPIC_API_VERSION,
 
     isBaidu: !!process.env.BAIDU_API_KEY,
     baiduApiKey: getApiKey(process.env.BAIDU_API_KEY),
