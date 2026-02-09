@@ -417,9 +417,11 @@ export const GEMINI_SUMMARIZE_MODEL = "gemini-pro";
 export const DEEPSEEK_SUMMARIZE_MODEL = "deepseek-chat";
 
 export const KnowledgeCutOffDate: Record<string, string> = {
-  default: "2021-09",
-  "grok-4.1-fast": "2024-06",
+  default: "2024-06",
+  "grok-4.1-expert": "2025-01",
+  "grok-4.1-fast": "2025-01",
   "gemini-flash": "2023-12",
+  "gpt-5.2": "2025-02",
 };
 
 export const DEFAULT_TTS_ENGINE = "OpenAI-TTS";
@@ -439,17 +441,41 @@ export const DEFAULT_TTS_VOICES = [
 export const VISION_MODEL_REGEXES: RegExp[] = [
   /vision/,
   /gemini/,
-  /grok/
+  /grok/,
+  /gpt-5/,
+  /claude-.*-4/
 ];
 
 export const EXCLUDE_VISION_MODEL_REGEXES: RegExp[] = [];
 
 const openaiModels: string[] = [
-  "grok-4.1-fast"
+  "gpt-5-nano",
+  "gpt-5.2",
+  "gpt-5.2-chat-latest",
+  "grok-4.1-expert",
+  "grok-4.1-fast",
+  "grok-4.1-fast-reasoning",
+  "grok-4.1-thinking"
 ];
 
 const googleModels: string[] = [
-  "gemini-flash"
+  "gemini-3-flash-preview",
+  "gemini-3-flash-puter",
+  "gemini-3-pro-preview",
+  "gemini-3.0-pro",
+  "gemini-flash",
+  "gemini-flash-latest"
+];
+
+const anthropicModels: string[] = [
+  "claude-opus-4-5-20251101",
+  "claude-opus-4.5",
+  "claude-sonnet-4-5-20250929",
+  "claude-sonnet-4.5"
+];
+
+const siliconflowModels: string[] = [
+  "openrouter:x-ai/grok-4.1-fast"
 ];
 
 let seq = 1000;
@@ -485,6 +511,28 @@ export const DEFAULT_MODELS = [
       providerName: "Google",
       providerType: "google",
       sorted: 3,
+    },
+  })),
+  ...anthropicModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "anthropic",
+      providerName: "Anthropic",
+      providerType: "anthropic",
+      sorted: 4,
+    },
+  })),
+  ...siliconflowModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "siliconflow",
+      providerName: "SiliconFlow",
+      providerType: "siliconflow",
+      sorted: 14,
     },
   })),
 ] as const;
