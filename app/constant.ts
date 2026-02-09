@@ -436,13 +436,13 @@ export const DEFAULT_TTS_VOICES = [
   "shimmer",
 ];
 
-export const VISION_MODEL_REGEXES = [
+export const VISION_MODEL_REGEXES: RegExp[] = [
   /vision/,
   /gemini/,
   /grok/
 ];
 
-export const EXCLUDE_VISION_MODEL_REGEXES = [];
+export const EXCLUDE_VISION_MODEL_REGEXES: RegExp[] = [];
 
 const openaiModels: string[] = [
   "grok-4.1-fast"
