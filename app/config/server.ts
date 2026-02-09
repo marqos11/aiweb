@@ -32,6 +32,10 @@ export const getServerSideConfig = () => {
     apiKey: getApiKey(process.env.OPENAI_API_KEY),
     openaiOrgId: process.env.OPENAI_ORG_ID,
 
+    isStability: !!process.env.STABILITY_API_KEY,
+    stabilityUrl: process.env.STABILITY_URL,
+    stabilityApiKey: getApiKey(process.env.STABILITY_API_KEY),
+
     isGoogle: !!process.env.GOOGLE_API_KEY,
     googleApiKey: getApiKey(process.env.GOOGLE_API_KEY),
     googleUrl: process.env.GOOGLE_URL,
@@ -44,6 +48,7 @@ export const getServerSideConfig = () => {
     isBaidu: !!process.env.BAIDU_API_KEY,
     baiduApiKey: getApiKey(process.env.BAIDU_API_KEY),
     baiduUrl: process.env.BAIDU_URL,
+    baiduSecretKey: process.env.BAIDU_SECRET_KEY,
 
     isBytedance: !!process.env.BYTEDANCE_API_KEY,
     bytedanceApiKey: getApiKey(process.env.BYTEDANCE_API_KEY),
@@ -53,9 +58,19 @@ export const getServerSideConfig = () => {
     alibabaApiKey: getApiKey(process.env.ALIBABA_API_KEY),
     alibabaUrl: process.env.ALIBABA_URL,
 
+    isTencent: !!process.env.TENCENT_API_KEY,
+    tencentUrl: process.env.TENCENT_URL,
+    tencentSecretKey: getApiKey(process.env.TENCENT_SECRET_KEY),
+    tencentSecretId: process.env.TENCENT_SECRET_ID,
+
     isMoonshot: !!process.env.MOONSHOT_API_KEY,
     moonshotApiKey: getApiKey(process.env.MOONSHOT_API_KEY),
     moonshotUrl: process.env.MOONSHOT_URL,
+
+    isIflytek: !!process.env.IFLYTEK_API_KEY,
+    iflytekUrl: process.env.IFLYTEK_URL,
+    iflytekApiKey: process.env.IFLYTEK_API_KEY,
+    iflytekApiSecret: process.env.IFLYTEK_API_SECRET,
 
     isDeepSeek: !!process.env.DEEPSEEK_API_KEY,
     deepseekApiKey: getApiKey(process.env.DEEPSEEK_API_KEY),
@@ -90,7 +105,6 @@ export const getServerSideConfig = () => {
     allowedWebDavEndpoints: (process.env.WHITE_WEBDAV_ENDPOINTS ?? "").split(","),
     enableMcp: process.env.ENABLE_MCP === "true",
 
-    // AUTH PROPERTIES RESTORED
     needCode: ACCESS_CODES.size > 0,
     codes: ACCESS_CODES,
   };
