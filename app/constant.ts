@@ -277,7 +277,7 @@ export const AI302 = {
   ListModelPath: "v1/models?llm=1",
 };
 
-export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; 
+export const DEFAULT_INPUT_TEMPLATE = `{{input}}`;
 
 export const DEFAULT_SYSTEM_TEMPLATE = `
 You are ChatGPT, a large language model trained by {{ServiceProvider}}.
@@ -288,27 +288,14 @@ Latex inline: \\(x^2\\)
 Latex block: $$e=mc^2$$
 `;
 
-export const MCP_TOOLS_TEMPLATE = `
-[clientId]
-{{ clientId }}
-[tools]
-{{ tools }}
-`;
-
-export const MCP_SYSTEM_TEMPLATE = `
-You are an AI assistant with access to system tools. Your role is to help users by combining natural language understanding with tool operations when needed.
-// ... (rest of template)
-`;
-
 export const SUMMARIZE_MODEL = "gpt-4o-mini";
 export const GEMINI_SUMMARIZE_MODEL = "gemini-pro";
 export const DEEPSEEK_SUMMARIZE_MODEL = "deepseek-chat";
 
 export const KnowledgeCutOffDate: Record<string, string> = {
   default: "2021-09",
-  "gpt-4-turbo": "2023-12",
-  "gemini-pro": "2023-12",
-  "deepseek-chat": "2024-07",
+  "grok-4.1-fast": "2024-06",
+  "gemini-flash": "2023-12",
 };
 
 export const DEFAULT_TTS_ENGINE = "OpenAI-TTS";
@@ -327,13 +314,11 @@ export const DEFAULT_TTS_VOICES = [
 
 export const VISION_MODEL_REGEXES = [
   /vision/,
-  /gpt-4o/,
-  /claude.*[34]/,
   /gemini/,
-  /vl/i,
+  /grok/
 ];
 
-export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
+export const EXCLUDE_VISION_MODEL_REGEXES = [];
 
 const openaiModels = [
   "grok-4.1-fast"
@@ -343,20 +328,7 @@ const googleModels = [
   "gemini-flash"
 ];
 
-const anthropicModels = [];
-const baiduModels = [];
-const bytedanceModels = [];
-const alibabaModes = [];
-const tencentModels = [];
-const moonshotModels = [];
-const iflytekModels = [];
-const deepseekModels = [];
-const xAIModes = [];
-const chatglmModels = [];
-const siliconflowModels = [];
-const ai302Models = [];
-
-let seq = 1000; 
+let seq = 1000;
 export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({
     name,
@@ -391,18 +363,6 @@ export const DEFAULT_MODELS = [
       sorted: 3,
     },
   })),
-  ...anthropicModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "anthropic",
-      providerName: "Anthropic",
-      providerType: "anthropic",
-      sorted: 4,
-    },
-  })),
-  // ... (mapping for other empty provider lists)
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
@@ -421,5 +381,6 @@ export const internalAllowedWebDavEndpoints = [
 ];
 
 export const DEFAULT_GA_ID = "G-89WN60ZK2E";
+
 export const SAAS_CHAT_URL = "https://nextchat.club";
 export const SAAS_CHAT_UTM_URL = "https://nextchat.club?utm=github";
