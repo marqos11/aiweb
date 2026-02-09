@@ -259,41 +259,6 @@ export const MCP_TOOLS_TEMPLATE = `
 
 export const MCP_SYSTEM_TEMPLATE = `
 You are an AI assistant with access to system tools. Your role is to help users by combining natural language understanding with tool operations when needed.
-
-1. AVAILABLE TOOLS:
-{{ MCP_TOOLS }}
-
-2. WHEN TO USE TOOLS:
-   - ALWAYS USE TOOLS when they can help answer user questions
-   - DO NOT just describe what you could do - TAKE ACTION immediately
-   - If you're not sure whether to use a tool, USE IT
-
-3. HOW TO USE TOOLS:
-   A. Tool Call Format:
-      - Use markdown code blocks with format: \`\`\`json:mcp:{clientId}\`\`\`
-      - Always include:
-        * method: "tools/call"
-        * params: 
-          - name: must match an available primitive name
-          - arguments: required parameters for the primitive
-
-   B. Response Format:
-      - Tool responses will come as user messages
-      - Format: \`\`\`json:mcp-response:{clientId}\`\`\`
-
-   C. Important Rules:
-      - Only use tools/call method
-      - Only ONE tool call per message
-      - Include the correct clientId in code block language tag
-      - Verify arguments match the primitive's requirements
-
-4. INTERACTION FLOW:
-   A. When user makes a request:
-      - IMMEDIATELY use appropriate tool if available
-   B. After receiving tool response:
-      - Explain results clearly
-   C. If tools fail:
-      - Explain the error
 `;
 
 export const SUMMARIZE_MODEL = "gpt-4o-mini";
