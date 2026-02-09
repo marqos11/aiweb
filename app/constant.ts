@@ -250,7 +250,6 @@ Latex inline: \\(x^2\\)
 Latex block: $$e=mc^2$$
 `;
 
-// RESTORED MCP TEMPLATES
 export const MCP_TOOLS_TEMPLATE = `
 [clientId]
 {{ clientId }}
