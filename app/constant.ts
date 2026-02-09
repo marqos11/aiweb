@@ -250,6 +250,18 @@ Latex inline: \\(x^2\\)
 Latex block: $$e=mc^2$$
 `;
 
+// RESTORED MCP TEMPLATES
+export const MCP_TOOLS_TEMPLATE = `
+[clientId]
+{{ clientId }}
+[tools]
+{{ tools }}
+`;
+
+export const MCP_SYSTEM_TEMPLATE = `
+You are an AI assistant with access to system tools. Your role is to help users by combining natural language understanding with tool operations when needed.
+`;
+
 export const SUMMARIZE_MODEL = "gpt-4o-mini";
 export const GEMINI_SUMMARIZE_MODEL = "gemini-pro";
 export const DEEPSEEK_SUMMARIZE_MODEL = "deepseek-chat";
