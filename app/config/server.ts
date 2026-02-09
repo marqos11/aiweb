@@ -1,19 +1,33 @@
-// aiweb-main/app/config/server.ts
 import md5 from "spark-md5";
 import { DEFAULT_MODELS, DEFAULT_GA_ID } from "../constant";
 import { isGPT4Model } from "../utils/model";
 
-// ... (keep ProcessEnv and getApiKey as they are)
+// ... (keep ProcessEnv declaration as it is in the source)
+
+const ACCESS_CODES = (function getAccessCodes(): Set<string> {
+  const code = process.env.CODE;
+  try {
+    const codes = (code?.split(",") ?? [])
+      .filter((v) => !!v)
+      .map((v) => md5.hash(v.trim()));
+    return new Set(codes);
+  } catch (e) {
+    return new Set();
+  }
+})();
+
+function getApiKey(keys?: string) {
+  const apiKeyEnvVar = keys ?? "";
+  const apiKeys = apiKeyEnvVar.split(",").map((v) => v.trim());
+  const randomIndex = Math.floor(Math.random() * apiKeys.length);
+  const apiKey = apiKeys[randomIndex];
+  return apiKey;
+}
 
 export const getServerSideConfig = () => {
   if (typeof process === "undefined") {
     throw Error("[Server Config] nodejs-only module");
   }
-
-  const disableGPT4 = !!process.env.DISABLE_GPT4;
-  let customModels = process.env.CUSTOM_MODELS ?? "";
-  let defaultModel = process.env.DEFAULT_MODEL ?? "";
-  let visionModels = process.env.VISION_MODELS ?? "";
 
   return {
     baseUrl: process.env.BASE_URL,
@@ -65,9 +79,9 @@ export const getServerSideConfig = () => {
     ai302Url: process.env.AI302_URL,
 
     gaId: process.env.GA_ID || DEFAULT_GA_ID,
-    customModels,
-    defaultModel,
-    visionModels,
+    customModels: process.env.CUSTOM_MODELS ?? "",
+    defaultModel: process.env.DEFAULT_MODEL ?? "",
+    visionModels: process.env.VISION_MODELS ?? "",
     hideUserApiKey: !!process.env.HIDE_USER_API_KEY,
     allowedWebDavEndpoints: (process.env.WHITE_WEBDAV_ENDPOINTS ?? "").split(","),
   };
