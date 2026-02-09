@@ -77,7 +77,6 @@ export const getServerSideConfig = () => {
     ai302ApiKey: getApiKey(process.env.AI302_API_KEY),
     ai302Url: process.env.AI302_URL,
 
-    // RESTORED CLOUDFLARE FOR ARTIFACTS
     cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
     cloudflareKVNamespaceId: process.env.CLOUDFLARE_KV_NAMESPACE_ID,
     cloudflareKVApiKey: getApiKey(process.env.CLOUDFLARE_KV_API_KEY),
@@ -90,5 +89,9 @@ export const getServerSideConfig = () => {
     hideUserApiKey: !!process.env.HIDE_USER_API_KEY,
     allowedWebDavEndpoints: (process.env.WHITE_WEBDAV_ENDPOINTS ?? "").split(","),
     enableMcp: process.env.ENABLE_MCP === "true",
+
+    // AUTH PROPERTIES RESTORED
+    needCode: ACCESS_CODES.size > 0,
+    codes: ACCESS_CODES,
   };
 };
