@@ -3,7 +3,7 @@ import md5 from "spark-md5";
 import { DEFAULT_MODELS, DEFAULT_GA_ID } from "../constant";
 import { isGPT4Model } from "../utils/model";
 
-// ... (keep ProcessEnv and ACCESS_CODES as they are)
+// ... (keep ProcessEnv and getApiKey as they are)
 
 export const getServerSideConfig = () => {
   if (typeof process === "undefined") {
@@ -15,8 +15,6 @@ export const getServerSideConfig = () => {
   let defaultModel = process.env.DEFAULT_MODEL ?? "";
   let visionModels = process.env.VISION_MODELS ?? "";
 
-  const allowedWebDavEndpoints = (process.env.WHITE_WEBDAV_ENDPOINTS ?? "").split(",");
-
   return {
     baseUrl: process.env.BASE_URL,
     apiKey: getApiKey(process.env.OPENAI_API_KEY),
@@ -24,17 +22,53 @@ export const getServerSideConfig = () => {
 
     isGoogle: !!process.env.GOOGLE_API_KEY,
     googleApiKey: getApiKey(process.env.GOOGLE_API_KEY),
-    
+    googleUrl: process.env.GOOGLE_URL,
+
     isAnthropic: !!process.env.ANTHROPIC_API_KEY,
     anthropicApiKey: getApiKey(process.env.ANTHROPIC_API_KEY),
+    anthropicUrl: process.env.ANTHROPIC_URL,
 
-    // Azure properties removed from return object
-    
+    isBaidu: !!process.env.BAIDU_API_KEY,
+    baiduApiKey: getApiKey(process.env.BAIDU_API_KEY),
+    baiduUrl: process.env.BAIDU_URL,
+
+    isBytedance: !!process.env.BYTEDANCE_API_KEY,
+    bytedanceApiKey: getApiKey(process.env.BYTEDANCE_API_KEY),
+    bytedanceUrl: process.env.BYTEDANCE_URL,
+
+    isAlibaba: !!process.env.ALIBABA_API_KEY,
+    alibabaApiKey: getApiKey(process.env.ALIBABA_API_KEY),
+    alibabaUrl: process.env.ALIBABA_URL,
+
+    isMoonshot: !!process.env.MOONSHOT_API_KEY,
+    moonshotApiKey: getApiKey(process.env.MOONSHOT_API_KEY),
+    moonshotUrl: process.env.MOONSHOT_URL,
+
+    isDeepSeek: !!process.env.DEEPSEEK_API_KEY,
+    deepseekApiKey: getApiKey(process.env.DEEPSEEK_API_KEY),
+    deepseekUrl: process.env.DEEPSEEK_URL,
+
+    isXAI: !!process.env.XAI_API_KEY,
+    xaiApiKey: getApiKey(process.env.XAI_API_KEY),
+    xaiUrl: process.env.XAI_URL,
+
+    isChatGLM: !!process.env.CHATGLM_API_KEY,
+    chatglmApiKey: getApiKey(process.env.CHATGLM_API_KEY),
+    chatglmUrl: process.env.CHATGLM_URL,
+
+    isSiliconFlow: !!process.env.SILICONFLOW_API_KEY,
+    siliconFlowApiKey: getApiKey(process.env.SILICONFLOW_API_KEY),
+    siliconFlowUrl: process.env.SILICONFLOW_URL,
+
+    isAI302: !!process.env.AI302_API_KEY,
+    ai302ApiKey: getApiKey(process.env.AI302_API_KEY),
+    ai302Url: process.env.AI302_URL,
+
     gaId: process.env.GA_ID || DEFAULT_GA_ID,
     customModels,
     defaultModel,
     visionModels,
-    allowedWebDavEndpoints,
     hideUserApiKey: !!process.env.HIDE_USER_API_KEY,
+    allowedWebDavEndpoints: (process.env.WHITE_WEBDAV_ENDPOINTS ?? "").split(","),
   };
 };
